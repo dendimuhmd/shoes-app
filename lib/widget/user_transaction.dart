@@ -11,7 +11,7 @@ class UserTransaction extends StatelessWidget {
   );
 
   void _onSubmitted() {
-    if (inputPriceController.text.isEmpty && inputPriceController.text.isEmpty)
+    if (inputShoesController.text.isEmpty || inputPriceController.text.isEmpty)
       return;
     _selectHandler(
         inputShoesController.text, double.parse(inputPriceController.text));
@@ -22,31 +22,21 @@ class UserTransaction extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
       child: Column(children: [
-        Card(
-          elevation: 20,
-          child: Container(
-            margin: EdgeInsets.all(16),
-            child: Column(
-              children: [
-                TextField(
-                  decoration: InputDecoration(labelText: 'input shoes...'),
-                  controller: inputShoesController,
-                  onSubmitted: inputShoesController.text.isEmpty
-                      ? null
-                      : _selectHandler(),
-                ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'price...'),
-                  controller: inputPriceController,
-                  keyboardType: TextInputType.number,
-                  maxLength: 4,
-                  onSubmitted: inputPriceController.text.isEmpty
-                      ? null
-                      : _selectHandler(),
-                ),
-              ],
-            ),
-          ),
+        TextField(
+          decoration:
+              InputDecoration(border: InputBorder.none, labelText: 'Brand'),
+          controller: inputShoesController,
+          onSubmitted:
+              inputShoesController.text.isEmpty ? null : _selectHandler(),
+        ),
+        TextField(
+          controller: inputPriceController,
+          decoration:
+              InputDecoration(border: InputBorder.none, labelText: 'Price'),
+          keyboardType: TextInputType.number,
+          maxLength: 4,
+          onSubmitted:
+              inputPriceController.text.isEmpty ? null : _selectHandler(),
         ),
         SizedBox(
           height: 50,

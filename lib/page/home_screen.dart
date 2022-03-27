@@ -11,7 +11,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Shoes> shoesList = [];
   void _addShoes(String name, double price) {
-    final txShoes = Shoes(name: name, price: price, date: DateTime.now());
+    final txShoes = Shoes(
+        name: name,
+        price: double.parse(price.toString()),
+        date: DateTime.now());
 
     setState(() {
       shoesList.add(txShoes);
@@ -20,9 +23,8 @@ class _HomePageState extends State<HomePage> {
 
   void _delete() {
     if (shoesList.length <= 0) return;
-    setState(() {
-      shoesList.removeLast();
-    });
+    shoesList.removeLast();
+    setState(() {});
   }
 
   @override

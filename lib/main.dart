@@ -3,7 +3,7 @@ import './page/home_screen.dart';
 import './page/login_screen.dart';
 
 void main() => runApp(MaterialApp(
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
         '/home': (context) => HomePage(),
