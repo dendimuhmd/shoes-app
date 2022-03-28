@@ -6,16 +6,20 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   void validate(context) {
-    if (usernameController.text == '')
-      throw ValidationException('Masukkan username');
-    else if (passwordController.text == '')
-      throw ValidationException('Masukkan password');
-    else if (usernameController.text != 'dendi' ||
-        passwordController.text != '1234')
-      throw Exception('Login failed');
-    else
+    if (usernameController.text != 'dendi' ||
+        passwordController.text != '1234') {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text('Username atau password salah'),
+        duration: Duration(seconds: 2),
+      ));
+    } else {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ),
+      );
+    }
   }
 
   @override
@@ -38,7 +42,7 @@ class LoginPage extends StatelessWidget {
                   controller: usernameController,
                   decoration: InputDecoration(
                       labelText: 'Username',
-                      hintText: 'Masukkan username...',
+                      hintText: 'Put username...',
                       contentPadding: EdgeInsets.only(
                           left: 16, bottom: 10, top: 10, right: 16),
                       border: InputBorder.none),
@@ -51,7 +55,7 @@ class LoginPage extends StatelessWidget {
                   controller: passwordController,
                   decoration: InputDecoration(
                       labelText: 'Password',
-                      hintText: 'Masukkan password...',
+                      hintText: 'Put password...',
                       focusedBorder: InputBorder.none,
                       contentPadding: EdgeInsets.only(
                           left: 16, bottom: 10, top: 10, right: 16),
@@ -67,7 +71,13 @@ class LoginPage extends StatelessWidget {
                       elevation: MaterialStateProperty.all(10),
                       backgroundColor: MaterialStateColor.resolveWith(
                           (states) => Color(0xff0B0B0B))),
-                  onPressed: () => validate(context),
+                  onPressed: () {
+                    try {
+                      validate(context);
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
                   child: Text('login')),
             )
           ],
