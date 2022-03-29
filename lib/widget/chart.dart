@@ -5,7 +5,7 @@ import '../model/shoes.dart';
 
 class Chart extends StatelessWidget {
   List<Shoes> _shoesList;
-  final VoidCallback _delete;
+  final Function _delete;
   Chart(this._shoesList, this._delete);
 
   @override
@@ -46,7 +46,8 @@ class Chart extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 10),
                             child: IconButton(
-                                onPressed: _delete,
+                                color: Theme.of(context).iconTheme.color,
+                                onPressed: () => _delete(context),
                                 icon: Icon(IconlyBold.delete)),
                           ),
                         ],

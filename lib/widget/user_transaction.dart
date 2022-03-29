@@ -13,6 +13,7 @@ class UserTransaction extends StatelessWidget {
   void _onSubmitted() {
     if (inputShoesController.text.isEmpty || inputPriceController.text.isEmpty)
       return;
+
     _selectHandler(
         inputShoesController.text, double.parse(inputPriceController.text));
   }

@@ -5,9 +5,9 @@ class LoginPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void validate(context) {
-    if (usernameController.text != 'dendi' ||
-        passwordController.text != '1234') {
+  void validate(BuildContext context) {
+    if (usernameController.text != 'dendimuhmd' ||
+        passwordController.text != 'helloworld') {
       Scaffold.of(context).showSnackBar(SnackBar(
         content: Text('Username atau password salah'),
         duration: Duration(seconds: 2),
@@ -33,7 +33,9 @@ class LoginPage extends StatelessWidget {
           alignment: WrapAlignment.center,
           runAlignment: WrapAlignment.center,
           children: [
-            Text('life on 4.0'),
+            Text(
+              'life on 4.0',
+            ),
             Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -52,6 +54,8 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 elevation: 10,
                 child: TextField(
+                  obscuringCharacter: '*',
+                  obscureText: true,
                   controller: passwordController,
                   decoration: InputDecoration(
                       labelText: 'Password',

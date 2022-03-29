@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:shoes_app/model/shoes.dart';
-import 'package:shoes_app/widget/chart.dart';
+
 import 'package:shoes_app/widget/user_transaction.dart';
+
+import '../widget/chart.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,10 +24,32 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _delete() {
-    if (shoesList.length <= 0) return;
-    shoesList.removeLast();
-    setState(() {});
+  void _delete(BuildContext context) {
+    if (shoesList.length == 0) return;
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        elevation: 10,
+        title: Icon(IconlyBold.delete),
+        content: Text('Are u sure?'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.cancel),
+          ),
+          IconButton(
+            onPressed: () {
+              shoesList.removeLast();
+              setState(() {});
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.check),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
