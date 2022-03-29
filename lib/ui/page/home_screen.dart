@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   List<Shoes> shoesList = [];
   void _addShoes(String name, double price) {
     final txShoes = Shoes(
+        id: DateTime.now().toString(),
         name: name,
         price: double.parse(price.toString()),
         date: DateTime.now());
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _delete(BuildContext context) {
+  void _delete(String id) {
     if (shoesList.length == 0) return;
     showDialog(
       context: context,
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             onPressed: () {
-              shoesList.removeLast();
+              shoesList.removeWhere((e) => e.id == id);
               setState(() {});
               Navigator.pop(context);
             },

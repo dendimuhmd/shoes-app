@@ -18,12 +18,10 @@ class _LoginButtonState extends State<LoginButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder?>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50))),
-            elevation: MaterialStateProperty.all(10),
-            backgroundColor:
-                MaterialStateColor.resolveWith((states) => Color(0xff0B0B0B))),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder?>(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+          elevation: MaterialStateProperty.all(10),
+        ),
         onPressed: () {
           final snackbar = SnackBar(
             content: Text("Username/Password it's wrong!"),
@@ -41,6 +39,9 @@ class _LoginButtonState extends State<LoginButton> {
             ScaffoldMessenger.of(context).showSnackBar(snackbar2);
           }
         },
-        child: Text('login'));
+        child: Text(
+          'login',
+          style: Theme.of(context).textTheme.titleSmall,
+        ));
   }
 }

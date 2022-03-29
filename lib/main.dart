@@ -4,13 +4,17 @@ import './ui/page/home_screen.dart';
 import './ui/page/login_screen.dart';
 
 void main() => runApp(MaterialApp(
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.dark,
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
-          appBarTheme:
-              AppBarTheme(titleTextStyle: GoogleFonts.roboto(fontSize: 80)),
-          backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.black)),
+        primaryTextTheme: TextTheme(
+            titleSmall:
+                GoogleFonts.roboto(fontSize: 14, color: Colors.black12)),
+        primarySwatch: Colors.amber,
+        appBarTheme: AppBarTheme(
+            titleTextStyle:
+                GoogleFonts.roboto(fontSize: 30, fontWeight: FontWeight.w700)),
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
