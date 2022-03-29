@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shoes_app/model/shoes.dart';
 
-import 'package:shoes_app/widget/user_transaction.dart';
+import '../widget/user_transaction.dart';
 
 import '../widget/chart.dart';
 

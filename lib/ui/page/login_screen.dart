@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_app/page/home_screen.dart';
+import 'package:shoes_app/ui/widget/login_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  void validate(BuildContext context) {
-    if (usernameController.text != 'dendimuhmd' ||
-        passwordController.text != 'helloworld') {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text('Username atau password salah'),
-        duration: Duration(seconds: 2),
-      ));
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(),
-        ),
-      );
-    }
-  }
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +24,7 @@ class LoginPage extends StatelessWidget {
           children: [
             Text(
               'life on 4.0',
+              style: Theme.of(context).appBarTheme.titleTextStyle,
             ),
             Card(
                 shape: RoundedRectangleBorder(
@@ -67,31 +57,13 @@ class LoginPage extends StatelessWidget {
                 )),
             Container(
               width: double.infinity,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder?>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                      elevation: MaterialStateProperty.all(10),
-                      backgroundColor: MaterialStateColor.resolveWith(
-                          (states) => Color(0xff0B0B0B))),
-                  onPressed: () {
-                    try {
-                      validate(context);
-                    } catch (e) {
-                      print(e);
-                    }
-                  },
-                  child: Text('login')),
+              child: LoginButton(
+                  passwordController: passwordController,
+                  usernameController: usernameController),
             )
           ],
         ),
       ),
     ));
   }
-}
-
-class ValidationException implements Exception {
-  String message;
-  ValidationException(this.message);
 }

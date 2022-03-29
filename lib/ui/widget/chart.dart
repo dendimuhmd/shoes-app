@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../model/shoes.dart';
+import '../../model/shoes.dart';
 
 class Chart extends StatelessWidget {
   List<Shoes> _shoesList;
