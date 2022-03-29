@@ -13,6 +13,7 @@ class UserTransaction extends StatelessWidget {
   void _onSubmitted() {
     if (inputShoesController.text.isEmpty || inputPriceController.text.isEmpty)
       return;
+
     _selectHandler(
         inputShoesController.text, double.parse(inputPriceController.text));
   }
@@ -34,7 +35,7 @@ class UserTransaction extends StatelessWidget {
           decoration:
               InputDecoration(border: InputBorder.none, labelText: 'Price'),
           keyboardType: TextInputType.number,
-          maxLength: 4,
+          maxLength: 5,
           onSubmitted:
               inputPriceController.text.isEmpty ? null : _selectHandler(),
         ),

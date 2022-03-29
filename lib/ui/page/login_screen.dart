@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_app/page/home_screen.dart';
+import 'package:shoes_app/ui/widget/login_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  void validate(context) {
-    if (usernameController.text == '')
-      throw ValidationException('Masukkan username');
-    else if (passwordController.text == '')
-      throw ValidationException('Masukkan password');
-    else if (usernameController.text != 'dendi' ||
-        passwordController.text != '1234')
-      throw Exception('Login failed');
-    else
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
-  }
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +22,10 @@ class LoginPage extends StatelessWidget {
           alignment: WrapAlignment.center,
           runAlignment: WrapAlignment.center,
           children: [
-            Text('life on 4.0'),
+            Text(
+              'life on 4.0',
+              style: Theme.of(context).appBarTheme.titleTextStyle,
+            ),
             Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -38,7 +34,7 @@ class LoginPage extends StatelessWidget {
                   controller: usernameController,
                   decoration: InputDecoration(
                       labelText: 'Username',
-                      hintText: 'Masukkan username...',
+                      hintText: 'Put username...',
                       contentPadding: EdgeInsets.only(
                           left: 16, bottom: 10, top: 10, right: 16),
                       border: InputBorder.none),
@@ -48,10 +44,12 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 elevation: 10,
                 child: TextField(
+                  obscuringCharacter: '*',
+                  obscureText: true,
                   controller: passwordController,
                   decoration: InputDecoration(
                       labelText: 'Password',
-                      hintText: 'Masukkan password...',
+                      hintText: 'Put password...',
                       focusedBorder: InputBorder.none,
                       contentPadding: EdgeInsets.only(
                           left: 16, bottom: 10, top: 10, right: 16),
@@ -59,25 +57,13 @@ class LoginPage extends StatelessWidget {
                 )),
             Container(
               width: double.infinity,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder?>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                      elevation: MaterialStateProperty.all(10),
-                      backgroundColor: MaterialStateColor.resolveWith(
-                          (states) => Color(0xff0B0B0B))),
-                  onPressed: () => validate(context),
-                  child: Text('login')),
+              child: LoginButton(
+                  passwordController: passwordController,
+                  usernameController: usernameController),
             )
           ],
         ),
       ),
     ));
   }
-}
-
-class ValidationException implements Exception {
-  String message;
-  ValidationException(this.message);
 }
