@@ -13,12 +13,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Shoes> shoesList = [];
-  void _addShoes(String name, double price) {
+  void _addShoes(String name, double price, DateTime choosen) {
     final txShoes = Shoes(
         id: DateTime.now().toString(),
         name: name,
         price: double.parse(price.toString()),
-        date: DateTime.now());
+        date: choosen);
 
     setState(() {
       shoesList.add(txShoes);
@@ -57,10 +57,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [Chart(shoesList, _delete), UserTransaction(_addShoes)],
-          ),
+        child: Column(
+          children: [Chart(shoesList, _delete), UserTransaction(_addShoes)],
         ),
       ),
     );
