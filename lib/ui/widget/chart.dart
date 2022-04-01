@@ -16,12 +16,17 @@ class Chart extends StatelessWidget {
         elevation: 10,
         child: Container(
             width: double.infinity,
-            height: 400,
+            height: MediaQuery.of(context).size.height * 0.4,
             child: _shoesList.isEmpty
                 ? Center(
-                    child: FlutterLogo(
-                    size: 100,
-                  ))
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: Image.asset(
+                        'asset/noTx.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
                 : ListView.builder(
                     itemCount: _shoesList.length,
                     itemBuilder: (context, index) => Card(

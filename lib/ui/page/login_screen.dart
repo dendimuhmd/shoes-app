@@ -12,7 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contextLoginPage) {
     return Scaffold(
         body: Container(
       margin: EdgeInsets.all(30),
